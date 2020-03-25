@@ -1,9 +1,9 @@
-EXPLAIN ANALYZE　DO $BODY$ DECLARE
+DO $BODY$ DECLARE
   i BIGINT;
   BEGIN
   FOR i IN 3000..8000 LOOP
     DELETE FROM index_table
-    WHERE id = i
+    WHERE unique_id = i;
   END LOOP;
 END
 $BODY$;
