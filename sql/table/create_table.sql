@@ -1,6 +1,10 @@
+DROP TABLE IF EXISTS public.index_table;
+DROP TABLE IF EXISTS public.non_index_table;
+
 CREATE TABLE IF NOT EXISTS public.index_table (
   primary_id BIGINT NOT NULL
   ,unique_id BIGINT
+  ,record_type TEXT
   ,r_time TIMESTAMPTZ
   ,nested_json JSONB NOT NULL DEFAULT '{}'
   ,PRIMARY KEY(primary_id)
@@ -9,6 +13,7 @@ CREATE TABLE IF NOT EXISTS public.index_table (
 CREATE TABLE IF NOT EXISTS public.non_index_table (
   primary_id BIGINT NOT NULL
   ,unique_id BIGINT
+  ,record_type TEXT
   ,r_time TIMESTAMPTZ
   ,nested_json JSONB NOT NULL DEFAULT '{}'
   ,PRIMARY KEY(primary_id)
@@ -21,6 +26,11 @@ DO $BODY$ DECLARE
     INSERT INTO index_table VALUES(
       i,
       i,
+      CASE i%2
+        WHEN 0 THEN 'even'
+        WHEN 1 THEN 'odd'
+      END
+      ,
       NOW() + CAST( i || 'days' AS interval),
       jsonb_build_object(
         'name'
@@ -36,6 +46,10 @@ DO $BODY$ DECLARE
     INSERT INTO non_index_table VALUES(
       i,
       i,
+      CASE i%2
+        WHEN 0 THEN 'even'
+        WHEN 1 THEN 'odd'
+      END,
       NOW() + CAST( i || 'days' AS interval),
       jsonb_build_object(
         'name'

@@ -1,0 +1,1 @@
+CREATE INDEX ON public.index_table(unique_id);
