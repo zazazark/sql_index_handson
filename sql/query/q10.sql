@@ -1,1 +1,1 @@
-EXPLAIN ANALYZE SELECT * FROM public.index_table WHERE report_type = 'even'; 
+EXPLAIN ANALYZE SELECT * FROM public.index_table WHERE record_type = 'even'; 
