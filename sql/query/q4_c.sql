@@ -1,0 +1,1 @@
+EXPLAIN ANALYZE SELECT * FROM public.non_index_table WHERE record_type = 'odd';

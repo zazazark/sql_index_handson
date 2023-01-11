@@ -1,0 +1,1 @@
+CREATE INDEX index_2 ON public.index_table(record_type);
