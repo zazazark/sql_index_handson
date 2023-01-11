@@ -1,1 +1,1 @@
-CREATE INDEX ON public.index_table(unique_id);
+CREATE INDEX index_1 ON public.index_table(unique_id);

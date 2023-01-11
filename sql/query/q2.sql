@@ -1,1 +1,0 @@
-EXPLAIN ANALYZE SELECT * FROM public.index_table WHERE unique_id = 5000; 

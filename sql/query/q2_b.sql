@@ -1,0 +1,1 @@
+EXPLAIN ANALYZE SELECT * FROM public.non_index_table WHERE unique_id = 50000;

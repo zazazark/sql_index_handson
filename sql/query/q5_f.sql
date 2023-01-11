@@ -1,0 +1,1 @@
+EXPLAIN ANALYZE UPDATE public.non_index_table SET r_time = NOW() WHERE unique_id = 50000;

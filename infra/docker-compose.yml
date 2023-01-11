@@ -1,0 +1,13 @@
+services:
+  db:
+    image: postgres:14.1
+    container_name: index-handson
+    environment:
+      - POSTGRES_DB=2023
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 9999:5432
+    command: postgres -c log_destination=stderr -c log_statement=all
+    volumes:
+      - ../sql:/sql

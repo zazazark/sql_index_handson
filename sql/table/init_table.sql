@@ -16,13 +16,12 @@ CREATE TABLE IF NOT EXISTS public.non_index_table (
   ,record_type TEXT
   ,r_time TIMESTAMPTZ
   ,nested_json JSONB NOT NULL DEFAULT '{}'
-  ,PRIMARY KEY(primary_id)
 );
 
 DO $BODY$ DECLARE
   i BIGINT;
   BEGIN
-  FOR i IN 1..10000 LOOP
+  FOR i IN 1..100000 LOOP
     INSERT INTO index_table VALUES(
       i,
       i,
@@ -31,7 +30,7 @@ DO $BODY$ DECLARE
         WHEN 1 THEN 'odd'
       END
       ,
-      NOW() + CAST( i || 'days' AS interval),
+      '2023-01-01 00:00:00+09'::TIMESTAMPTZ + CAST( i || 'hours' AS interval),
       jsonb_build_object(
         'name'
 		    ,md5(i::text)
@@ -50,7 +49,7 @@ DO $BODY$ DECLARE
         WHEN 0 THEN 'even'
         WHEN 1 THEN 'odd'
       END,
-      NOW() + CAST( i || 'days' AS interval),
+      '2023-01-01 00:00:00+09'::TIMESTAMPTZ + CAST( i || 'hours' AS interval),
       jsonb_build_object(
         'name'
 		    ,md5(i::text)

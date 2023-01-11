@@ -1,1 +1,0 @@
-EXPLAIN ANALYZE SELECT * FROM public.index_table WHERE primary_id = 5000; 
